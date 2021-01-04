@@ -15,18 +15,12 @@ function Board() {
 
     function handleClick(i) {
         let newSquares = [...squares];
-        newSquares[i] = xIsNext ? 'X' : 'O';
-        setSquares( (squares) => squares = newSquares );
-        setNext ( (prevState) => !prevState );
-        /*const squares = squares.slice();
         if (calculateWinner(squares) || squares[i]){
             return;
         }
-        squares[i] = this.state.xIsNext ? 'X' : 'O'; //sets the square i on 'X' or 'O' depending on the value of xIsNext (I am writing on the copy of the array squares)
-        this.setState({
-            squares: squares,
-            xIsNext: !this.state.xIsNext, 
-        }) //replaces the array squares with the copy in the state and flips the value of xIsNext*/
+        newSquares[i] = xIsNext ? 'X' : 'O'; //sets the square i on 'X' or 'O' depending on the value of xIsNext (I am writing on newSquares)
+        setSquares( (squares) => squares = newSquares ); //replaces squares with newSquares
+        setNext ( (prevState) => !prevState ); //flips the value of xIsNext
     }
 
     function renderSquare(i) {
@@ -38,7 +32,6 @@ function Board() {
         );
     }
 
-    //const status = 'Next player: ' + (xIsNext ? 'X' : 'O');
     const winner = calculateWinner(squares);
     let status;
     if (winner) {
