@@ -3,24 +3,17 @@ import Square from './Square';
 import './index.css';
 
 function Board() {
-    let [squares, setSquares] = useState(Array(9).fill(null));
-    let [xIsNext, setNext] = useState(true);
-    /*constructor(props) {
-        super(props);
-        this.state = {
-            squares: Array(9).fill(null),
-            xIsNext: true, //the value of this boolean will be flipped by handleClick method
-        }
-    }*/
+    let [squares, setSquares] = useState(Array(9).fill(null)); //initializes the array squares
+    let [xIsNext, setNext] = useState(true); //initializes the boolean xIsNext
 
     function handleClick(i) {
         let newSquares = [...squares];
-        if (calculateWinner(squares) || squares[i]){
+        if (calculateWinner(squares) || squares[i]) {
             return;
-        }
+        } // returns early if there is a winner or square i is already filled
         newSquares[i] = xIsNext ? 'X' : 'O'; //sets the square i on 'X' or 'O' depending on the value of xIsNext (I am writing on newSquares)
-        setSquares( (squares) => squares = newSquares ); //replaces squares with newSquares
-        setNext ( (prevState) => !prevState ); //flips the value of xIsNext
+        setSquares((squares) => squares = newSquares); //replaces squares with newSquares
+        setNext((prevState) => !prevState); //flips the value of xIsNext
     }
 
     function renderSquare(i) {
@@ -34,8 +27,8 @@ function Board() {
 
     const winner = calculateWinner(squares);
     let status;
-    if (winner) {
-        status = 'The winner is: ' + winner;
+    if (winner) { // winner is true only if there is a winner; otherwise it is null
+        status = 'The winner is: ' + winner; 
     } else {
         status = 'Next player: ' + (xIsNext ? 'X' : 'O');
     }
@@ -62,7 +55,6 @@ function Board() {
     );
 }
 
-
 function calculateWinner(squares) {
     const lines = [ //possible combinations to win the game
         [0, 1, 2],
@@ -74,7 +66,7 @@ function calculateWinner(squares) {
         [0, 4, 8],
         [2, 4, 6],
     ];
-    for (let i = 0; i < lines.length; i++){ //given the array squares, checks if there is a winning combination; until found, returns null
+    for (let i = 0; i < lines.length; i++) { //given the array squares, checks if there is a winning combination; until found, returns null
         const [a, b, c] = lines[i];
         if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
             return squares[a];
