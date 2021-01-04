@@ -38,14 +38,14 @@ function Board() {
         );
     }
 
-    const status = 'Next player: ' + (xIsNext ? 'X' : 'O');
-    /*const winner = calculateWinner(this.state.squares);
+    //const status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+    const winner = calculateWinner(squares);
     let status;
     if (winner) {
         status = 'The winner is: ' + winner;
     } else {
-        status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
-    }*/
+        status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+    }
 
     return (
         <div>
@@ -70,7 +70,7 @@ function Board() {
 }
 
 
-/*function calculateWinner(squares) {
+function calculateWinner(squares) {
     const lines = [ //possible combinations to win the game
         [0, 1, 2],
         [3, 4, 5],
@@ -88,6 +88,6 @@ function Board() {
         }
     }
     return null;
-}*/
+}
 
 export default Board;
